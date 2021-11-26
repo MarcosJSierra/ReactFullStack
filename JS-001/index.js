@@ -59,7 +59,10 @@ function onSubmit(event){
         <td>${cantidad}</td>
         <td>${precio}</td>
         <td>${total}</td>
-        <td><a href='#' onclick="onEdit(event)">Editar</a>|<a href='#' onclick="onDelete(event)">Eliminar</a></td>
+        <td>
+            <a href='#' onclick="onEdit(event)" class='btn btn-sm btn-outline-primary'>Editar</a>|
+            <a href='#' onclick="onDelete(event)" class='btn btn-sm btn-outline-secundary'>Eliminar</a>
+        </td>
     `;
 
     cantidadTotalElement.innerText = cantidadTotal;
