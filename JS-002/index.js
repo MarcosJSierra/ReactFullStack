@@ -39,8 +39,6 @@ function onSubmit(event){
     const cantidad = frmCantidad[1];
     const precio = frmPrecio[1];
     const categoria =  frmCategoria[1];
-    let total = cantidad*precio;
-
     let tr;
     if (!codigo){
         codigo = ++indice;
@@ -50,7 +48,8 @@ function onSubmit(event){
         tr = currentRow;
     }
     tr.dataset.categoria = categoria;
-    
+    let total = cantidad*precio;
+
     cantidadTotal += parseFloat(cantidad);
     preciosTotales += parseFloat(precio);
     granTotal += parseFloat(total);
