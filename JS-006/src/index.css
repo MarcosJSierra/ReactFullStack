@@ -1,0 +1,7 @@
+@import "bootstrap";
+
+.app {
+    color: white;
+    font-family: sans-serif;
+    background-image: url("./background.png");
+}
