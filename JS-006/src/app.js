@@ -5,9 +5,6 @@ import './app.css';
 
 const App = () => {
     return <main className="container">
-        <div>
-            <h1>Inventario</h1>
-        </div>
         <ProductForm />
         <ProductsList />
 

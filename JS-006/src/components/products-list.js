@@ -1,5 +1,6 @@
 import React from "react";
-
+import { useSelector, useDispatch } from "react-redux"; 
+import { productoEliminado, productoSeleccionado } from "../store/store";
 
 const ProductItem = (props) => {
     let producto = props.producto;
@@ -28,35 +29,18 @@ const ProductItem = (props) => {
 
 
 const ProductsList = () => {
-    const seleccionar = (codigo) => {
-        console.log('seleccionar: ', codigo)
-    }
+    const seleccionar = (codigo) => dispatch(productoSeleccionado(codigo));
     
-    const eliminar = (codigo) => {
-        console.log('eliminar: ', codigo)
-    }
+    const eliminar = (codigo) => dispatch(productoEliminado(codigo));
+
     
     const acciones = {
         seleccionar,
         eliminar
     }
 
-    const productos = [
-        {
-            codigo: 1,
-            nombre: "producto A",
-            cantidad: 10,
-            precio: 100,
-            total: 1000
-        },
-        {
-            codigo: 2,
-            nombre: "producto A",
-            cantidad: 10,
-            precio: 100,
-            total: 1000
-        },
-    ];
+    const productos = useSelector((state) => state.productos);
+    const dispatch = useDispatch();
 
     const cantidadTotal = sum(productos, x => x.cantidad);
     const precioTotal = sum(productos, x => x.precio);

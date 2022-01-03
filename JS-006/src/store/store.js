@@ -153,15 +153,3 @@ export function generadorCodigoProductoBuilder(codigoInicial){
         return next(actionToDispatch);
     };
 }
-
-const Encabezado = () => (
-        <h1> 
-            {titulo} - {cuadrado(4)}
-        </h1>
-    );
-
-ReactDOM.render{
-    <div>
-        <Encabezado />
-    </div>
-}
