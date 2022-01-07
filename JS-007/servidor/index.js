@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
 
@@ -13,6 +14,7 @@ let productos = [
     }
 ];
 
+app.use(cors());
 app.use(bodyParser.json({ type: 'application/json'}));
 app.use(logs);
 
@@ -80,7 +82,7 @@ app.delete("/productos/:codigo", (req, res) => {
 const port = process.argv[2] | process.env.PORT | 5001;
 
 app.listen(5001, () => {
-    console.log("servidor escuchando al puerto 5000")
+    console.log("servidor escuchando al puerto 5001")
 });
 
 // function isAuthenticated(requ, res, next){
