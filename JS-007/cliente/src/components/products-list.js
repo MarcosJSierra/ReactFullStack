@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"; 
+import { Link } from "react-router-dom";
 import { productoEliminado, productoSeleccionado } from "../store/store";
 
 const ProductItem = (props) => {
@@ -13,11 +14,10 @@ const ProductItem = (props) => {
         <td>{producto.total}</td>
         <td>
             <div className="btn-group">
-                <a href='#' className='btn btn-sm btn-outline-secondary' 
-                    onClick={() => acciones.seleccionar(producto.codigo)}>
+                <Link to={"editar/"+ producto.codigo} title="Editar" className='btn btn-sm btn-outline-secondary'>
                     <i className="bi bi-pencil-square"></i>
-                </a>
-                <a href='#' className='btn btn-sm btn-outline-danger'
+                </Link>
+                <a title="Eliminar" href='#' className='btn btn-sm btn-outline-danger'
                     onClick={() => acciones.eliminar(producto.codigo)}>
                     <i className="bi bi-trash"></i>
                 </a>
@@ -29,18 +29,19 @@ const ProductItem = (props) => {
 
 
 const ProductsList = () => {
-    const seleccionar = (codigo) => dispatch(productoSeleccionado(codigo));
-    
     const eliminar = (codigo) => dispatch(productoEliminado(codigo));
 
     
     const acciones = {
-        seleccionar,
         eliminar
     }
 
     const productos = useSelector((state) => state.productos);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({ type: "obtener-productos"});
+    }, []);
 
     const cantidadTotal = sum(productos, x => x.cantidad);
     const precioTotal = sum(productos, x => x.precio);
@@ -74,9 +75,10 @@ const ProductsList = () => {
 }
 
 
-function sum(elementos, selector){
-    return elementos.map(selector)
-            .reduce((a, b) => a + b, 0);
+function sum(elementos, selector) {
+    return elementos
+        .map(selector)
+        .reduce((a, b) => a + b, 0);
 }
 
 export default ProductsList;

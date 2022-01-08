@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState }  from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { agregarOModificarProducto } from "../store/store";
+import { useParams } from "react-router";
+import { agregarOModificarProducto, productoSeleccionado } from "../store/store";
 
 const ProductForm = () =>{
     const categorias = [
@@ -14,6 +15,7 @@ const ProductForm = () =>{
 
     const producto = useSelector((state) => state.producto);
     const dispatch = useDispatch();
+    const { codigo } = useParams();
 
     const [values, setValues] = useState({
         codigo: 0,
@@ -32,6 +34,11 @@ const ProductForm = () =>{
             precio: producto.precio || '',
             categoria: producto.precio || 1
         })
+
+        if (codigo != producto.codigo){
+            dispatch(productoSeleccionado(codigo));
+        }
+
     }, [producto])
 
     const onChange = (event) =>{
